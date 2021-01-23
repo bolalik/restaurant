@@ -25,7 +25,7 @@ SECRET_KEY = 'b2^58+1h2l!+ma22gb+-uwb3ylw7-*om5=_rf@mqk!r(7j-07f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     # Local
     'posts.apps.PostsConfig',  # new
-    # 'courses.apps.CourseConfig',  # new
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'biller.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'admin',
+        'PASSWORD': 'secret',
+        'HOST': 'db',
+        'PORT': 5432
     }
 }
 
@@ -126,6 +130,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
